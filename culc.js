@@ -175,23 +175,7 @@ let formArmat = `
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;  
 let formBalka = `
-<div><div><label for="country">
-  	<span class="field-label">Тип балки</span>
-    <select class="width-100" name="d" data-region="options">
-      
-        <option value="1">Гост 8239-89</option>
-      
-        <option value="2">Нормальный двутавр (Б)</option>
-      
-        <option value="3">Широкополочный двутавр (Ш)</option>
-      
-        <option value="4">Колонный двутавр (К)</option>
-      
-        <option value="5">Двутавр дополнительной серии (Д)</option>
-      
-        <option value="6">Сварной двутавр (С)</option>
-      
-    </select>
+<div><div><label for="country"> 
 </label>
 </div><div><label for="country">
   	<span class="field-label">Номер балки</span>
@@ -1696,16 +1680,6 @@ nav.forEach(item =>{
         if(e.target.innerText === 'Швеллер'){
             imgadd(linkImg, 3, imgClass, 3);
             addForm (formShvel);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                default:
-                    break;
-            }
             culcShveler();
         }
         if(e.target.innerText === 'Шестигранник'){
