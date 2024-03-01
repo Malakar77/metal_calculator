@@ -24,6 +24,12 @@ After installing Metal Calculator, you can use the web application to perform th
 4. Get results and perform additional actions as needed.
 
 ## Contributing
-
+If you would like to contribute to Metal Calculator, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b new-feature`.
+3. Commit your changes: `git commit -m 'Add new feature'`.
+4. Push to the branch: `git push origin new-feature`.
+5. Submit a pull request.
+   
 ## License
 This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details.
