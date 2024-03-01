@@ -1,1 +1,29 @@
-metal_calculator
+# Metal Calculator
+
+Metal Calculator is a web application for calculating metal properties and performing related operations.
+
+## Table of Contents
+
+## Features
+- Calculate various properties of different types of metal (i.e., steel, aluminum, copper, etc.).
+- Perform calculations for metal-related products (i.e., bars, beams, squares, etc.).
+- Visualize properties and dimensions of metal products using images and forms.
+- Select specific metal types and perform calculations based on the selected options.
+
+## Installation
+To install Metal Calculator, follow these steps:
+1. Clone the repository: `git clone https://github.com/Malakar77/metal_calculator.git`
+2. Navigate to the project directory.
+3. Open the `index.html` file in a web browser.
+
+## Usage
+After installing Metal Calculator, you can use the web application to perform the following tasks:
+1. Navigate to the metal type selection options (i.e., steel, aluminum, copper, etc.).
+2. Choose a specific metal type and perform calculations based on the selected type.
+3. Visualize metal product properties and dimensions using the provided images and forms.
+4. Get results and perform additional actions as needed.
+
+## Contributing
+
+## License
+
