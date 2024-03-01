@@ -2,6 +2,8 @@
 
 Metal Calculator is a web application for calculating metal properties and performing related operations.
 
+![alt text](https://github.com/Malakar77/metal_calculator/img/Culc.png?raw=true)
+
 ## Table of Contents
 
 ## Features
