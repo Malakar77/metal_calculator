@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-const steelOptions = [
+    //Константа плотности для Select
+    const steelOptions = [
     {
       steel: [
             { value: "7.8", label: "Ст3", selected: true },
@@ -99,42 +99,98 @@ const steelOptions = [
       ],
     }
   ];
+// Список категорий
+    const steel = {
+        'Rebar': 'Арматура',
+        'IBeam': 'Балка/двутавр',
+        'squareBillet': 'Квадрат',
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+        'squarePipe': 'Труба профильная',
+        'angleBar': 'Уголок',
+        'channelBeam': 'Швеллер',
+        'hexagonSteel': 'Шестигранник',
+    };
+    const stainlessSteel = {
+        'squareBillet': 'Квадрат',
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+        'squarePipe': 'Труба профильная',
+        'angleBar': 'Уголок',
+        'hexagonSteel': 'Шестигранник',
+    };
+    const aluminum = {
+        'squareBillet': 'Квадрат',
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+        'squarePipe': 'Труба профильная',
+        'angleBar': 'Уголок',
+        'hexagonSteel': 'Шестигранник',
+    };
+    const cuprum = {
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+    };
+    const brass = {
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+        'hexagonSteel': 'Шестигранник',
+    };
+    const bronze = {
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+    };
+    const titan = {
+        'rod': 'Круг/пруток',
+        'strand': 'Лента',
+        'sheet': 'Лист/плита',
+        'pipe': 'Труба круглая',
+        'squarePipe': 'Труба профильная',
+    };
+    const linkImg = [
+        'img/Armature.png',
+        'img/Balk.png',
+        'img/Branch.png',
+        'img/ChannelP.png',
+        'img/Circle.png',
+        'img/Corner.png',
+        'img/Flange.png',
+        'img/Hexahedron.png',
+        'img/List.png',
+        'img/PipeCircle.png',
+        'img/PipeProf.png',
+        'img/Ribbon.png',
+        'img/Square.png',
+    ];
+    const imgClass= [
+        'shape-armature',
+        'shape-balk',
+        'shape-square',
+        'shape-circle',
+        'shape-ribbon',
+        'shape-list',
+        'shape-branch',
+        'shape-pipeCircle',
+        'shape-pipeProf',
+        'shape-corner',
+        'shape-flange',
+        'shape-channelp',
+        'shape-hexahedron'
+    ];
 
-
-
-
-/**
- * Добавление класса active элементу, по которому произошёл клик
- */
-const nav = document.querySelectorAll('nav');
-nav.forEach(item =>{
-  item.addEventListener('click', (e)=>{
-  let metall = e.target.closest('ul');
-    for (let i = 0; i < metall.children.length; i++) {
-        metall.children[i].classList.remove('active');
-    }
-  e.target.parentNode.classList.add("active");
-    })
-})
-
-
-
-    const steel   = ['Арматура', 'Балка/двутавр', 'Квадрат', 'Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая', 'Труба профильная', 'Уголок',
-                        'Швеллер', 'Шестигранник'];
-    const nerz    = ['Квадрат', 'Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая', 'Труба профильная', 'Уголок', 'Швеллер', 'Шестигранник'];
-    const alum    = ['Квадрат', 'Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая', 'Труба профильная', 'Уголок', 'Шестигранник'];
-    const cuprum  = ['Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая'];
-    const latun   = ['Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая', 'Шестигранник'];
-    const bronza  = ['Круг/пруток', 'Лента', 'Лист/плита'];
-    const titan   = ['Круг/пруток', 'Лента', 'Лист/плита', 'Труба круглая', 'Труба профильная'];
-    const linkImg = ['img/Armature.png','img/Balk.png', 'img/Branch.png','img/ChannelP.png','img/Circle.png','img/Corner.png','img/Flange.png','img/Hexahedron.png','img/List.png',
-                        'img/PipeCircle.png','img/PipeProf.png','img/Ribbon.png','img/Square.png',
-                        ];
-    const imgClass= ['shape-armature', 'shape-balk', 'shape-square', 'shape-circle', 'shape-ribbon', 'shape-list', 'shape-branch', 'shape-pipeCircle', 'shape-pipeProf',  'shape-corner',
-                        'shape-flange', 'shape-channelp', 'shape-hexahedron'
-                        ];
-    
-let formArmat = `
+   // html верстка форм для каждой категории
+    let formRebar = `
 <div><div><label for="country">
   	<span class="field-label">Номинальный диаметр</span>
     <select class="width-100" name="d" data-region="options">
@@ -174,7 +230,7 @@ let formArmat = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;  
-let formBalka = `
+    let formIBeam = `
 <div><div><label for="country"> 
 </label>
 </div><div><label for="country">
@@ -264,7 +320,7 @@ let formBalka = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formCube = `
+    let formSquareBillet = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -323,7 +379,7 @@ let formCube = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formCrug = `
+    let formRod = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -382,7 +438,7 @@ let formCrug = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formLenta = `
+    let formStrand = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -446,7 +502,7 @@ let formLenta = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formList = `
+    let formSheet = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -515,537 +571,7 @@ let formList = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formotvod = `
-<div><div><label for="country">
-  	<span class="field-label">Исполнение</span>
-    <select class="width-100" name="d" data-region="options">
-      
-        <option value="1">Исполнение 1</option>
-      
-        <option value="2" selected="">Исполнение 2</option>
-      
-    </select>
-</label>
-</div><div><label for="country">
-  	<span class="field-label">Размер</span>
-    <select class="width-100" name="s" data-region="options">
-      
-        <option value="43">32х2</option>
-      
-        <option value="44">32х2.5</option>
-      
-        <option value="45">32х3</option>
-      
-        <option value="46">32х3.5</option>
-      
-        <option value="47">38х2</option>
-      
-        <option value="48">38х2.5</option>
-      
-        <option value="49">38х3</option>
-      
-        <option value="50">38х3.5</option>
-      
-        <option value="51">38х4</option>
-      
-        <option value="52">45х2.5</option>
-      
-        <option value="53">45х3</option>
-      
-        <option value="54">45х3.5</option>
-      
-        <option value="55">45х4</option>
-      
-        <option value="56">45х5</option>
-      
-        <option value="57">57х2.5</option>
-      
-        <option value="58">57х3</option>
-      
-        <option value="59">57х3.5</option>
-      
-        <option value="60">57х4</option>
-      
-        <option value="61">57х4.5</option>
-      
-        <option value="62">57х5</option>
-      
-        <option value="63">57х5.5</option>
-      
-        <option value="64">57х6</option>
-      
-        <option value="65">76х3</option>
-      
-        <option value="66">76х3.5</option>
-      
-        <option value="67">76х4</option>
-      
-        <option value="68">76х4.5</option>
-      
-        <option value="69">76х5</option>
-      
-        <option value="70">76х5.53</option>
-      
-        <option value="71">76х6</option>
-      
-        <option value="72">76х7</option>
-      
-        <option value="73">76х8</option>
-      
-        <option value="74">89х3</option>
-      
-        <option value="75">89х3.5</option>
-      
-        <option value="76">89х4</option>
-      
-        <option value="77">89х4.5</option>
-      
-        <option value="78">89х5</option>
-      
-        <option value="79">89х5.5</option>
-      
-        <option value="80">89х6</option>
-      
-        <option value="81">89х7</option>
-      
-        <option value="82">89х8</option>
-      
-        <option value="83">102х3.5</option>
-      
-        <option value="84">102х4</option>
-      
-        <option value="85">102х4.5</option>
-      
-        <option value="86">102х5</option>
-      
-        <option value="87">102х6</option>
-      
-        <option value="88">102х7</option>
-      
-        <option value="89">102х8</option>
-      
-        <option value="90">102х9</option>
-      
-        <option value="91">102х10</option>
-      
-        <option value="92">108х10</option>
-      
-        <option value="93">108х4</option>
-      
-        <option value="94">108х4.5</option>
-      
-        <option value="95">108х5</option>
-      
-        <option value="96">108х6</option>
-      
-        <option value="97">108х7</option>
-      
-        <option value="98">108х8</option>
-      
-        <option value="99">108х9</option>
-      
-        <option value="100">108х10</option>
-      
-        <option value="101">114х3.5</option>
-      
-        <option value="102">114х3.5</option>
-      
-        <option value="103">114х4.5</option>
-      
-        <option value="104">114х5</option>
-      
-        <option value="105">114х6</option>
-      
-        <option value="106">114х7</option>
-      
-        <option value="107">114х8</option>
-      
-        <option value="108">114х9</option>
-      
-        <option value="109">114х10</option>
-      
-        <option value="110">133х3.5</option>
-      
-        <option value="111">133х4</option>
-      
-        <option value="112">133х4.5</option>
-      
-        <option value="113">133х5</option>
-      
-        <option value="114">133х6</option>
-      
-        <option value="115">133х7</option>
-      
-        <option value="116">133х85</option>
-      
-        <option value="117">133х9</option>
-      
-        <option value="118">133х10</option>
-      
-        <option value="119">133х11</option>
-      
-        <option value="120">133х12</option>
-      
-        <option value="121">159х4</option>
-      
-        <option value="122">159х4.5</option>
-      
-        <option value="123">159х5</option>
-      
-        <option value="124">159х6</option>
-      
-        <option value="125">159х7</option>
-      
-        <option value="126">159х8</option>
-      
-        <option value="127">159х9</option>
-      
-        <option value="128">159х10</option>
-      
-        <option value="129">159х11</option>
-      
-        <option value="130">159х12</option>
-      
-        <option value="131">159х13</option>
-      
-        <option value="132">159х14</option>
-      
-        <option value="133">168х4</option>
-      
-        <option value="134">168х4.5</option>
-      
-        <option value="135">168х5</option>
-      
-        <option value="136">168х6</option>
-      
-        <option value="137">168х7</option>
-      
-        <option value="138">168х8</option>
-      
-        <option value="139">168х9</option>
-      
-        <option value="140">168х10</option>
-      
-        <option value="141">168х11</option>
-      
-        <option value="142">168х12</option>
-      
-        <option value="143">168х13</option>
-      
-        <option value="144">168х14</option>
-      
-        <option value="145">219х5</option>
-      
-        <option value="146">219х6</option>
-      
-        <option value="147">219х7</option>
-      
-        <option value="148">219х8</option>
-      
-        <option value="149">219х9</option>
-      
-        <option value="150">219х10</option>
-      
-        <option value="151">219х11</option>
-      
-        <option value="152">219х12</option>
-      
-        <option value="153">219х13</option>
-      
-        <option value="154">219х14</option>
-      
-        <option value="155">219х15</option>
-      
-        <option value="156">219х16</option>
-      
-        <option value="157">219х17</option>
-      
-        <option value="158">219х18</option>
-      
-        <option value="159">273х6</option>
-      
-        <option value="160">273х7</option>
-      
-        <option value="161">273х8</option>
-      
-        <option value="162">273х9</option>
-      
-        <option value="163">273х10</option>
-      
-        <option value="164">273х11</option>
-      
-        <option value="165">273х12</option>
-      
-        <option value="166">273х13</option>
-      
-        <option value="167">273х14</option>
-      
-        <option value="168">273х15</option>
-      
-        <option value="169">273х16</option>
-      
-        <option value="170">273х17</option>
-      
-        <option value="171">273х18</option>
-      
-        <option value="172">273х20</option>
-      
-        <option value="173">273х22</option>
-      
-        <option value="174">325х7</option>
-      
-        <option value="175">325х8</option>
-      
-        <option value="176">325х9</option>
-      
-        <option value="177">325х10</option>
-      
-        <option value="178">325х11</option>
-      
-        <option value="179">325х12</option>
-      
-        <option value="180">32513</option>
-      
-        <option value="181">325х14</option>
-      
-        <option value="182">325х15</option>
-      
-        <option value="183">325х16</option>
-      
-        <option value="184">325х17</option>
-      
-        <option value="185">325х18</option>
-      
-        <option value="186">325х20</option>
-      
-        <option value="187">325х22</option>
-      
-        <option value="188">325х24</option>
-      
-        <option value="189">325х26</option>
-      
-        <option value="190">325х28</option>
-      
-        <option value="191">377х9</option>
-      
-        <option value="192">377х10</option>
-      
-        <option value="193">377х11</option>
-      
-        <option value="194">377х12</option>
-      
-        <option value="195">377х13</option>
-      
-        <option value="196">377х14</option>
-      
-        <option value="197">377х15</option>
-      
-        <option value="198">377х16</option>
-      
-        <option value="199">377х17</option>
-      
-        <option value="200">377х18</option>
-      
-        <option value="201">377х19</option>
-      
-        <option value="202">377х20</option>
-      
-        <option value="203">377х21</option>
-      
-        <option value="204">377х22</option>
-      
-        <option value="205">377х23</option>
-      
-        <option value="206">377х24</option>
-      
-        <option value="207">426х8</option>
-      
-        <option value="208">426х9</option>
-      
-        <option value="209">426х10</option>
-      
-        <option value="210">426х11</option>
-      
-        <option value="211">426х12</option>
-      
-        <option value="212">426х13</option>
-      
-        <option value="213">426х14</option>
-      
-        <option value="214">426х15</option>
-      
-        <option value="215">426х16</option>
-      
-        <option value="216">426х17</option>
-      
-        <option value="217">426х18</option>
-      
-        <option value="218">426х20</option>
-      
-        <option value="219">426х22</option>
-      
-        <option value="220">426х24</option>
-      
-        <option value="221">426х26</option>
-      
-        <option value="222">426х28</option>
-      
-        <option value="223">426х30</option>
-      
-        <option value="224">426х32</option>
-      
-        <option value="225">426х34</option>
-      
-        <option value="226">530х9</option>
-      
-        <option value="227">530х10</option>
-      
-        <option value="228">530х11</option>
-      
-        <option value="229">530х12</option>
-      
-        <option value="230">530х13</option>
-      
-        <option value="231">530х14</option>
-      
-        <option value="232">530х15</option>
-      
-        <option value="233">530х16</option>
-      
-        <option value="234">530х17</option>
-      
-        <option value="235">530х18</option>
-      
-        <option value="236">530х20</option>
-      
-        <option value="237">530х22</option>
-      
-        <option value="238">530х24</option>
-      
-        <option value="239">530х26</option>
-      
-        <option value="240">530х28</option>
-      
-        <option value="241">530х30</option>
-      
-        <option value="242">530х32</option>
-      
-        <option value="243">530х34</option>
-      
-        <option value="244">530х36</option>
-      
-        <option value="245">630х9</option>
-      
-        <option value="246">630х10</option>
-      
-        <option value="247">630х11</option>
-      
-        <option value="248">630х12</option>
-      
-        <option value="249">630х13</option>
-      
-        <option value="250">630х14</option>
-      
-        <option value="251">630х15</option>
-      
-        <option value="252">630х16</option>
-      
-        <option value="253">630х17</option>
-      
-        <option value="254">630х18</option>
-      
-        <option value="255">630х20</option>
-      
-        <option value="256">630х22</option>
-      
-        <option value="257">630х24</option>
-      
-        <option value="258">630х26</option>
-      
-        <option value="259">630х28</option>
-      
-        <option value="260">630х30</option>
-      
-        <option value="261">630х32</option>
-      
-        <option value="262">720х9</option>
-      
-        <option value="263">720х10</option>
-      
-        <option value="264">720х11</option>
-      
-        <option value="265">720х12</option>
-      
-        <option value="266">720х13</option>
-      
-        <option value="267">720х14</option>
-      
-        <option value="268">720х15</option>
-      
-        <option value="269">720х16</option>
-      
-        <option value="270">720х17</option>
-      
-        <option value="271">720х18</option>
-      
-        <option value="272">720х20</option>
-      
-        <option value="273">720х22</option>
-      
-        <option value="274">720х24</option>
-      
-        <option value="275">720х26</option>
-      
-        <option value="276">720х28</option>
-      
-        <option value="277">720х30</option>
-      
-        <option value="278">720х32</option>
-      
-        <option value="279">820х9</option>
-      
-        <option value="280">820х10</option>
-      
-        <option value="281">820х11</option>
-      
-        <option value="282">820х12</option>
-      
-        <option value="283">820х13</option>
-      
-        <option value="284">820х14</option>
-      
-        <option value="285">820х15</option>
-      
-        <option value="286">820х16</option>
-      
-        <option value="287">820х17</option>
-      
-        <option value="288">820х18</option>
-      
-        <option value="289">820х20</option>
-      
-        <option value="290">820х22</option>
-      
-        <option value="291">820х24</option>
-      
-        <option value="292">820х26</option>
-      
-        <option value="293">820×28</option>
-      
-        <option value="294">820×30</option>
-      
-        <option value="295">820×32</option>
-      
-    </select>
-</label>
-</div><div><label>
-	<span class="field-label">Количество</span>
-	<input class="width-100" name="n" type="text" placeholder="0">
-  <span class="input-append">шт.</span>
-</label>
-</div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
-`;
-let formTrubaKr = `
+    let formPipe = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -1109,7 +635,7 @@ let formTrubaKr = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formTrubaPr = `
+    let formSquarePipe = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -1178,7 +704,7 @@ let formTrubaPr = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formUgol = `
+    let formAngleBar = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -1247,77 +773,7 @@ let formUgol = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formFlan = `
-<div><div><label for="country">
-  	<span class="field-label">Давление</span>
-    <select class="width-100" name="d" data-region="options">
-      
-        <option value="1">Ру 6</option>
-      
-        <option value="2">Ру 10</option>
-      
-        <option value="3">Ру 16</option>
-      
-        <option value="4">Ру 25</option>
-      
-    </select>
-</label>
-</div><div><label for="country">
-  	<span class="field-label">Условный диаметр</span>
-    <select class="width-100" name="flange" data-region="options">
-      
-        <option value="1">15</option>
-      
-        <option value="2">20</option>
-      
-        <option value="3">25</option>
-      
-        <option value="4">32</option>
-      
-        <option value="5">40</option>
-      
-        <option value="6">50</option>
-      
-        <option value="7">65</option>
-      
-        <option value="8">80</option>
-      
-        <option value="9">100</option>
-      
-        <option value="10">125</option>
-      
-        <option value="11">150</option>
-      
-        <option value="12">200</option>
-      
-        <option value="13">250</option>
-      
-        <option value="14">300</option>
-      
-        <option value="15">350</option>
-      
-        <option value="16">400</option>
-      
-        <option value="17">500</option>
-      
-        <option value="18">600</option>
-      
-        <option value="19">800</option>
-      
-        <option value="20">1000</option>
-      
-        <option value="21">1200</option>
-      
-    </select>
-</label>
-</div><div><label>
-	<span class="field-label">Количество</span>
-	<input class="width-100" name="n" type="text" placeholder="0">
-  <span class="input-append">шт.</span>
-</label>
-</div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
-`;
-let formShvel = `
+    let formChannelBeam = `
 <div><div><label for="country">
   	<span class="field-label">Номер швеллера</span>
     <select class="width-100" name="d" data-region="options">
@@ -1399,7 +855,7 @@ let formShvel = `
 </label>
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
-let formShest = `
+    let formHexagonSteel = `
 <div><div><label for="country">
   	<span class="field-label">Марка стали</span>
     <select class="width-100" name="p" data-region="options">
@@ -1459,292 +915,358 @@ let formShest = `
 </div><a class="btn main-btn btn-green width-100">Рассчитать</a></div>
 `;
 
+// Создаем объект с соответствиями
+    const steelMap = {
+        'steel': steel,
+        'stainlessSteel': stainlessSteel,
+        'aluminum': aluminum,
+        'cuprum': cuprum,
+        'brass': brass,
+        'bronze': bronze,
+        'titan': titan
+    };
 
+// Создаем объект с соответствиями
+    const itemsMap = {
+        'Rebar': {
+            imgIndex: 0,
+            form: formRebar,
+            inputsFunc: inputs,
+            culcFunc: culcArma
+        },
+        'IBeam': {
+            imgIndex: 1,
+            form: formIBeam,
+            inputsFunc: inputs,
+            culcFunc: culcBalka
+        },
+        'squareBillet': {
+            imgIndex: 12,
+            form: formSquareBillet,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcCube
+        },
+        'rod': {
+            imgIndex: 4,
+            form: formRod,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'cuprum':
+                        addSelect(steelOptions[0].cuprum);
+                        break;
+                    case 'brass':
+                        addSelect(steelOptions[0].brass);
+                        break;
+                    case 'bronze':
+                        addSelect(steelOptions[0].bronze);
+                        break;
+                    case 'titan':
+                        addSelect(steelOptions[0].titan);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcCrug
+        },
+        'strand': {
+            imgIndex: 11,
+            form: formStrand,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'cuprum':
+                        addSelect(steelOptions[0].cuprum);
+                        break;
+                    case 'brass':
+                        addSelect(steelOptions[0].brass);
+                        break;
+                    case 'bronze':
+                        addSelect(steelOptions[0].bronze);
+                        break;
+                    case 'titan':
+                        addSelect(steelOptions[0].titan);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcLenta
+        },
+        'sheet': {
+            imgIndex: 8,
+            form: formSheet,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'cuprum':
+                        addSelect(steelOptions[0].cuprum);
+                        break;
+                    case 'brass':
+                        addSelect(steelOptions[0].brass);
+                        break;
+                    case 'bronze':
+                        addSelect(steelOptions[0].bronze);
+                        break;
+                    case 'titan':
+                        addSelect(steelOptions[0].titan);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcList
+        },
+        'pipe': {
+            imgIndex: 9,
+            form: formPipe,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'cuprum':
+                        addSelect(steelOptions[0].cuprum);
+                        break;
+                    case 'brass':
+                        addSelect(steelOptions[0].brass);
+                        break;
+                    case 'titan':
+                        addSelect(steelOptions[0].titan);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcTrubaKr
+        },
+        'squarePipe': {
+            imgIndex: 10,
+            form: formSquarePipe,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'titan':
+                        addSelect(steelOptions[0].titan);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcTrubaPr
+        },
+        'angleBar': {
+            imgIndex: 5,
+            form: formAngleBar,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcUgolok
+        },
+        'channelBeam': {
+            imgIndex: 3,
+            form: formChannelBeam,
+            inputsFunc: inputs,
+            culcFunc: culcShveler
+        },
+        'hexagonSteel': {
+            imgIndex: 7,
+            form: formHexagonSteel,
+            inputsFunc: inputs,
+            switchFunc: function() {
+                switch (search()) {
+                    case 'steel':
+                        addSelect(steelOptions[0].steel);
+                        break;
+                    case 'stainlessSteel':
+                        addSelect(steelOptions[0].stainlessSteel);
+                        break;
+                    case 'aluminum':
+                        addSelect(steelOptions[0].aluminum);
+                        break;
+                    case 'brass':
+                        addSelect(steelOptions[0].brass);
+                        break;
+                    default:
+                        break;
+                }
+            },
+            culcFunc: culcShest
+        },
+    };
 
-nav.forEach(item =>{
-    item.addEventListener('click', (e)=>{
-        if(e.target.innerText === 'Черный'){
-            addSteel(steel);
-        }
-        if(e.target.innerText === 'Нержавейка'){
-            addSteel(nerz);
-        }
-        if(e.target.innerText === 'Алюминий'){
-            addSteel(alum);
-        }
-        if(e.target.innerText === 'Медь'){
-            addSteel(cuprum);
-        }
-        if(e.target.innerText === 'Латунь'){
-            addSteel(latun);
-        }
-        if(e.target.innerText === 'Бронза'){
-            addSteel(bronza);
-        }
-        if(e.target.innerText === 'Титан'){
-            addSteel(titan);
-        }
-        if(e.target.innerText === 'Арматура'){
-            imgadd(linkImg, 0, imgClass, 0);
-            addForm (formArmat);
-            culcArma();
-        }
-        if(e.target.innerText === 'Балка/двутавр'){
-            imgadd(linkImg, 1, imgClass, 1);
-            addForm (formBalka);
-            culcBalka ();
-        }
-        if(e.target.innerText === 'Квадрат'){
-            imgadd(linkImg, 12, imgClass, 12);
-            addForm (formCube);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                default:
-                    break;
+    /**
+     * Добавление класса active элементу, по которому произошёл клик
+     */
+    const nav = document.querySelectorAll('nav');
+    nav.forEach(item =>{
+        item.addEventListener('click', (e)=>{
+            let metall = e.target.closest('ul');
+            for (let i = 0; i < metall.children.length; i++) {
+                metall.children[i].classList.remove('active');
             }
-            culcCube();
-        }
-        if(e.target.innerText === 'Круг/пруток'){
-            imgadd(linkImg, 4, imgClass, 4);
-            addForm (formCrug);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Медь':
-                    addSelect(steelOptions[0].cuprum);
-                    break;
-                case 'Латунь':
-                    addSelect(steelOptions[0].brass);
-                    break;
-                case 'Бронза':
-                    addSelect(steelOptions[0].bronze);
-                    break;
-                case 'Титан':
-                    addSelect(steelOptions[0].titan);
-                    break;
-                default:
-                    break;
+            e.target.parentNode.classList.add("active");
+        })
+    })
+// Получаем все элементы навигации
+    const navItems = document.querySelectorAll('a');
+// Добавляем один обработчик для всех элементов навигации
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Получаем текст элемента, на котором произошло событие
+            const steelType = e.target.dataset.value;
+            // Проверяем, есть ли соответствие в объекте steelMap и вызываем соответствующую функцию
+            if (steelMap.hasOwnProperty(steelType)) {
+                addSteel(steelMap[steelType]);
             }
-            culcCrug ();
-        }
-        if(e.target.innerText === 'Лента'){
-            imgadd(linkImg, 11, imgClass, 11);
-            addForm (formLenta);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Медь':
-                    addSelect(steelOptions[0].cuprum);
-                    break;
-                case 'Латунь':
-                    addSelect(steelOptions[0].brass);
-                    break;
-                case 'Бронза':
-                    addSelect(steelOptions[0].bronze);
-                    break;
-                case 'Титан':
-                    addSelect(steelOptions[0].titan);
-                    break;
-                default:
-                    break;
-            }
-            culcLenta();
+        });
+    });
 
-        }
-        if(e.target.innerText === 'Лист/плита'){
-            imgadd(linkImg, 8, imgClass, 8);
-            addForm (formList);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Медь':
-                    addSelect(steelOptions[0].cuprum);
-                    break;
-                case 'Латунь':
-                    addSelect(steelOptions[0].brass);
-                    break;
-                case 'Бронза':
-                    addSelect(steelOptions[0].bronze);
-                    break;
-                case 'Титан':
-                    addSelect(steelOptions[0].titan);
-                    break;
-                default:
-                    break;
+// Добавляем один обработчик для всех элементов навигации
+    nav.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Получаем текст элемента на котором произошло событие
+            const itemType = e.target.dataset.value;
+            // Проверяем, есть ли соответствие в объекте itemsMap
+            if (itemsMap.hasOwnProperty(itemType)) {
+                const itemConfig = itemsMap[itemType];
+                imgadd(linkImg, itemConfig.imgIndex, imgClass, itemConfig.imgIndex);
+                addForm(itemConfig.form);
+                itemConfig.inputsFunc();
+                if (itemConfig.switchFunc) {
+                    itemConfig.switchFunc();
+                }
+                itemConfig.culcFunc();
             }
-            culcList();
-        }
-        if(e.target.innerText === 'Отвод'){
-            imgadd(linkImg, 2, imgClass, 2);
-            addForm (formotvod);
-        }
-        if(e.target.innerText === 'Труба круглая'){
-            imgadd(linkImg, 9, imgClass, 9);
-            addForm (formTrubaKr);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Медь':
-                    addSelect(steelOptions[0].cuprum);
-                    break;
-                case 'Латунь':
-                    addSelect(steelOptions[0].brass);
-                    break;
-                case 'Титан':
-                    addSelect(steelOptions[0].titan);
-                    break;
-                default:
-                    break;
-            }
-            culcTrubaKr();
-        }
-        if(e.target.innerText === 'Труба профильная'){
-            imgadd(linkImg, 10, imgClass, 10);
-            addForm (formTrubaPr);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Титан':
-                    addSelect(steelOptions[0].titan);
-                    break;
-                default:
-                    break;
-            }
-            culcTrubaPr();
-        }
-        if(e.target.innerText === 'Уголок'){
-            imgadd(linkImg, 5, imgClass, 5);
-            addForm (formUgol);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                default:
-                    break;
-            }
-            culcUgolok();
-        }
-        if(e.target.innerText === 'Фланец плоский'){
-            imgadd(linkImg, 6, imgClass, 6);
-            addForm (formFlan);
-        }
-        if(e.target.innerText === 'Швеллер'){
-            imgadd(linkImg, 3, imgClass, 3);
-            addForm (formShvel);
-            culcShveler();
-        }
-        if(e.target.innerText === 'Шестигранник'){
-            imgadd(linkImg, 7, imgClass, 7);
-            addForm (formShest);
-            switch (search()) {
-                case 'Черный':
-                    addSelect(steelOptions[0].steel);
-                    break;
-                case 'Нержавейка':
-                    addSelect(steelOptions[0].stainlessSteel);
-                    break;
-                case 'Алюминий':
-                    addSelect(steelOptions[0].aluminum);
-                    break;
-                case 'Латунь':
-                    addSelect(steelOptions[0].brass);
-                    break;
-                default:
-                    break;
-            }
-            culcShest();
-        }
-
-	})
-})
+        });
+    });
+    // Вызов функции для категории по умолчанию
     culcTrubaKr();
+    inputs();
+    /**
+     * функция добавления категорий
+     */
 function addSteel(steel){
+        // Создаем объект с соответствиями
     let unit60 = document.querySelector('.unit-60');
     let block = unit60.querySelector('ul')
     let child = block.querySelectorAll('li');
-
     for (let i = 0; i < child.length; i++) {
         block.removeChild(child[i]);
     }
-    for (let i = 0; i < steel.length; i++) {
-        let chil_not = document.createElement('li');
-            chil_not.innerHTML = `
-                 <a onclick="return false;" href="#">${steel[i]}</a>
-            `;
-        block.append(chil_not);
-    }
-}
-    function search() {
-        // Получаем все элементы списка
-        const items = document.querySelectorAll('ul[data-region="metall-list"] li');
-
-        // Перебираем элементы
-        for (const item of items) {
-            // Проверяем, есть ли у элемента класс 'active'
-            if (item.classList.contains('active')) {
-                // Если есть, возвращаем текст элемента
-                return item.textContent.trim();
-            }
+    for (let key in steel) {
+        if (steel.hasOwnProperty(key)) {
+            let chil_not = document.createElement('li');
+            chil_not.innerHTML = `<a onclick="return false;" href="#" data-value="${key}">${steel[key]}</a>`;
+            block.append(chil_not);
         }
     }
+}
+    /**
+     * Функция выбора вида металла
+     * @returns {string}
+     */
+    function search() {
+        const items = document.querySelectorAll('ul[data-region="metall-list"] li');
+        const activeItem = [...items].find(item => item.classList.contains('active'));
+        if (activeItem) {
+            return activeItem.children[0].dataset.value;
+        }
+        return null; // Возвращаем null если активный элемент не найден
+    }
 
-
-
-function addSelect(steelOptions){
+    /**
+     * событие change обнуление при вводе спец символов и запятый в инпут
+     */
+    function inputs(){
+    let inputs = document.querySelectorAll("input");
+    inputs.forEach(function(input) {
+        input.addEventListener("change", function() {
+            this.value = this.value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        });
+    });
+}
+    /**
+     * Заполнение select при выборе вида металла
+     * @param steelOptions
+     */
+    function addSelect(steelOptions){
     const select = document.querySelector('select');
     while (select.firstChild) {
         select.removeChild(select.firstChild);
     }
-
     for(let i = 0; i<steelOptions.length; i++ ){
         // Создаем новый элемент option
         const newOption = document.createElement('option');
@@ -1758,9 +1280,14 @@ function addSelect(steelOptions){
     }
 
 }
-
-
-function imgadd(linkImg, i, imgClass, b){
+    /**
+     * Добавление картинки профиля металла
+     * @param linkImg
+     * @param i
+     * @param imgClass
+     * @param b
+     */
+    function imgadd(linkImg, i, imgClass, b){
     let parImg = document.querySelector('.img');
     let img = document.querySelector('.pane-img');
     parImg.removeChild(img);
@@ -1771,8 +1298,10 @@ function imgadd(linkImg, i, imgClass, b){
     imgAdd.src = linkImg[i];
     parImg.append(imgAdd)
 }
-
-
+    /**
+     * Добавление формы при выборе сортамента
+     * @param formArmat
+     */
 function addForm (formArmat){
     let forms = document.querySelector('.forms');
     let childForm = document.querySelector('.childForm');
@@ -1782,131 +1311,153 @@ function addForm (formArmat){
         newForm.innerHTML = formArmat;
     forms.append(newForm);
 }
-
-function culcArma(){
+    /**
+     * Подсчет веса арматуры
+     */
+    function culcArma(){
     let submit = document.querySelector('.btn-green');
     submit.addEventListener('click', ()=>{
-        let select = document.querySelector('select').value.replace(/,/g, '.');
-        let input = document.querySelector('input').value.replace(/,/g, '.');
+        let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let input = document.querySelector('input').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
         let result = (((Number(select)*Number(select)*3.14)/4)*7.85)/1000;
         let result2 = result*input;
         document.querySelectorAll('.result-item-value')[1].textContent = result2.toFixed(3) + ' кг';
     })
 }
-
-function culcBalka (){
+    /**
+     * Подсчет веса балки
+     */
+    function culcBalka (){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select.numBalk').value.replace(/,/g, '.');
-    let input = document.querySelector('input').value.replace(/,/g, '.');
+    let select = document.querySelector('select.numBalk').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let input = document.querySelector('input').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = Number(select)*Number(input);
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcCube(){
+    /**
+     * Подсчет веса квадрата
+     */
+    function culcCube(){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputSt = document.querySelector('input.storona').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputSt = document.querySelector('input.storona').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = ((select*(inputSt*inputSt))*inputWh)/1000;
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcCrug (){
+    /**
+     * Подсчет веса Круга/Прутка
+     */
+    function culcCrug (){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputSt = document.querySelector('input.dia').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputSt = document.querySelector('input.dia').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = (3.14*(Number(inputSt)*Number(inputSt))/4*Number(inputWh)*Number(select))/1000;
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcLenta(){
+    /**
+     * Подсчет веса ленты
+     */
+    function culcLenta(){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputHv = document.querySelector('input.height').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
-    let inputSz = document.querySelector('input.size').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputHv = document.querySelector('input.height').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputSz = document.querySelector('input.size').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = (inputSz * inputHv * inputWh * select) /1000;
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcList(){
+    /**
+     * Подсчет веса листа
+     */
+    function culcList(){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputHv = document.querySelector('input.height').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
-    let inputSz = document.querySelector('input.size').value.replace(/,/g, '.');
-    let inputCnt = document.querySelector('input.count').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputHv = document.querySelector('input.height').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputSz = document.querySelector('input.size').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputCnt = document.querySelector('input.count').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = ((inputSz * inputHv * inputWh * select) * inputCnt)/1000000;
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcTrubaKr(){
+    /**
+     * Подсчет веса трубы круглой
+     */
+    function culcTrubaKr(){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputDia = document.querySelector('input.dia').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
-    let inputLg = document.querySelector('input.length').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputDia = document.querySelector('input.dia').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputLg = document.querySelector('input.length').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = ((3.14 * (inputDia - inputWh) * inputWh * select) * inputLg) / 1000;
     console.log(inputDia - inputWh)
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcTrubaPr(){
+    /**
+     * Подсчет веса трубы профильной
+     */
+    function culcTrubaPr(){
   let submit = document.querySelector('.btn-green');
   submit.addEventListener('click', ()=>{
-    let select = document.querySelector('select').value.replace(/,/g, '.');
-    let inputHv = document.querySelector('input.height').value.replace(/,/g, '.');
-    let inputWh = document.querySelector('input.width').value.replace(/,/g, '.');
-    let inputSz = document.querySelector('input.size').value.replace(/,/g, '.');
-    let inputLg = document.querySelector('input.length').value.replace(/,/g, '.');
+    let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputHv = document.querySelector('input.height').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputWh = document.querySelector('input.width').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputSz = document.querySelector('input.size').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+    let inputLg = document.querySelector('input.length').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
     let result = ((2 * (parseFloat(inputHv) + parseFloat(inputWh)) * parseFloat(inputSz) * parseFloat(select)) * parseFloat(inputLg))/1000;
     document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
   })
 }
-
-function culcUgolok() {
+    /**
+     * Подсчет веса уголка
+     */
+    function culcUgolok() {
     let submit = document.querySelector('.btn-green');
     submit.addEventListener('click', () => {
-        let select = document.querySelector('select').value.replace(/,/g, '.');
-        let inputA = document.querySelector('input.a').value.replace(/,/g, '.');
-        let inputB = document.querySelector('input.b').value.replace(/,/g, '.');
-        let inputT = document.querySelector('input.t').value.replace(/,/g, '.');
-        let inputL = document.querySelector('input.l').value.replace(/,/g, '.');
+        let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputA = document.querySelector('input.a').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputB = document.querySelector('input.b').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputT = document.querySelector('input.t').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputL = document.querySelector('input.l').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
         let square = (parseFloat(inputA) + parseFloat(inputB) - parseFloat(inputT)) * parseFloat(inputT);
         let result = (parseFloat(select) * square * parseFloat(inputL)) / 1000;
         document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
     })
 }
-
-function culcShveler(){
+    /**
+     * Подсчет веса швеллера
+     */
+    function culcShveler(){
     let submit = document.querySelector('.btn-green');
     submit.addEventListener('click', () => {
-        let select = document.querySelector('select').value.replace(/,/g, '.');
-        let inputL = document.querySelector('input.l').value.replace(/,/g, '.');
+        let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputL = document.querySelector('input.l').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
         let result = parseFloat(select) * parseFloat(inputL);
         document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
     })
 }
-
-function culcShest(){
+    /**
+     * Подсчет веса Шестигранника
+     */
+    function culcShest(){
     let submit = document.querySelector('.btn-green');
     submit.addEventListener('click', () => {
-        let select = document.querySelector('select').value.replace(/,/g, '.');
-        let inputA = document.querySelector('input.dia').value.replace(/,/g, '.');
-        let inputB = document.querySelector('input.length').value.replace(/,/g, '.');
+        let select = document.querySelector('select').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputA = document.querySelector('input.dia').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
+        let inputB = document.querySelector('input.length').value.replace(/[^0-9,.]/g, ' ').replace(/\s/g, '');
         let total = (3.464*inputA/2*inputA/2*select)/1000;
         let result = total* inputB;
         document.querySelectorAll('.result-item-value')[1].textContent = result.toFixed(3) + ' кг';
