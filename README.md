@@ -5,7 +5,12 @@ Metal Calculator is a web application for calculating metal properties and perfo
 ![alt text](/img/Culc.png)
 
 ## Table of Contents
-
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+  
 ## Features
 - Calculate various properties of different types of metal (i.e., steel, aluminum, copper, etc.).
 - Perform calculations for metal-related products (i.e., bars, beams, squares, etc.).
