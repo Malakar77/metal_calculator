@@ -26,4 +26,4 @@ After installing Metal Calculator, you can use the web application to perform th
 ## Contributing
 
 ## License
-
+This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details.
